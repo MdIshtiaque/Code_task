@@ -15,7 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = product::all()->paginate(2);
+        $product_variants = product_variant::all();
+        $prices = product_variant_prices::all();
+        return view('products.index', compact('products', 'product_varients', 'prices'));
     }
 
     /**
